@@ -1,0 +1,22 @@
+kind: pipeline
+name: default
+
+steps:
+- name: test
+  image: docker
+  volumes:
+  - name: docker_sock
+    path: /var/run/docker.sock
+  commands:
+  - export IMAGE_NAME=website
+  - export CONTAINER_NAME=$${IMAGE_NAME}_$${DRONE_BRANCH}
+  - echo start
+  - ls
+  - docker build -t $${IMAGE_NAME}:${DRONE_BRANCH} .
+  - docker stop $${CONTAINER_NAME} || true
+  - docker run -d --rm --name $${CONTAINER_NAME} -p 8088:80 $${IMAGE_NAME}:${DRONE_BRANCH}
+
+volumes:
+- name: docker_sock
+  host:
+    path: /var/run/docker.sock

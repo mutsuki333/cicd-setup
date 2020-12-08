@@ -1,0 +1,17 @@
+kind: pipeline
+name: default
+
+steps:
+- name: test
+  image: docker/compose
+  volumes:
+  - name: docker_sock
+    path: /var/run/docker.sock
+  commands:
+  - echo start
+  - docker-compose up -d
+
+volumes:
+- name: docker_sock
+  host:
+    path: /var/run/docker.sock

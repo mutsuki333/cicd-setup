@@ -1,0 +1,9 @@
+gitea:
+  image: gitea/gitea:latest
+  container_name: gitea
+  volumes:
+    - ./data:/data
+  ports:
+    - "10022:22"
+    - "10080:3000"
+  restart: always
