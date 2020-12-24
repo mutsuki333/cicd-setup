@@ -6,7 +6,19 @@ A note for self hosted cicd setup, using docker, gitea, drone.
 
 [Gitea](https://github.com/go-gitea/gitea)
 
-My configurations below, for more at https://docs.gitea.io/en-us/config-cheat-sheet/
+My configurations [below](#gitea-full-config), for more at https://docs.gitea.io/en-us/config-cheat-sheet/
+
+## Drone
+
+Follow the setup guide [here](https://docs.drone.io/server/provider/gitea/),  
+and replace the environment variables in the docker-compose file.
+
+## Examples
+
+For examples that need host docker support, the repo must be marked trusted by the admin.
+
+
+## Gitea full config
 
 ```ini
 # data/gitea/conf/app.ini
@@ -100,12 +112,3 @@ PASSWD  = PWD
 ENABLE_OPENID_SIGNIN = true
 ENABLE_OPENID_SIGNUP = false
 ```
-
-## Drone
-
-Follow the setup guide [here](https://docs.drone.io/server/provider/gitea/),  
-and replace the environment variables in the docker-compose file.
-
-## Examples
-
-For examples that need host docker support, the repo must be marked trusted by the admin.
